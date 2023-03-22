@@ -11,3 +11,4 @@ ctrlc = "3.2.5"
 crypt = { path = "../crypt"}
 packet = { path = "../packet" }
 net = { path = "../net" }
+tokio = { version = "1.26.0", features = ["full"] }
