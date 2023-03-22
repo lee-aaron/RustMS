@@ -99,7 +99,7 @@ mod test_packet {
     fn read_correct_opcodes() {
         let mut rng = thread_rng();
         for _ in 0..100 {
-            let opcode: i16 = rng.gen_range(0, (i16::MAX as usize) + 1) as i16;
+            let opcode: i16 = rng.gen_range(0..(i16::MAX as usize) + 1) as i16;
 
             let mut buf = Vec::new();
             buf.write_i16::<LittleEndian>(opcode).unwrap();
@@ -114,7 +114,7 @@ mod test_packet {
     fn read_negative_opcodes() {
         let mut rng = thread_rng();
         for _ in 0..100 {
-            let opcode: i16 = rng.gen_range(i16::MIN, 0);
+            let opcode: i16 = rng.gen_range(i16::MIN..0);
 
             let mut buf = Vec::new();
             buf.write_i16::<LittleEndian>(opcode).unwrap();
@@ -146,7 +146,7 @@ mod test_packet {
     fn packet_length_constant() {
         let mut rng = thread_rng();
         for _ in 0..100 {
-            let length = rng.gen_range(2, (MAX_PACKET_LENGTH as usize) + 1);
+            let length = rng.gen_range(2..(MAX_PACKET_LENGTH as usize) + 1);
 
             let mut buf: Vec<u8> = iter::repeat(0).take(length).collect();
             rng.fill(&mut buf[..]);

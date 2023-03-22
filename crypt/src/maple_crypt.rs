@@ -153,7 +153,7 @@ mod tests {
     fn test_encrypt_decrypt_original() {
         let mut rng = thread_rng();
         for _ in 0..100 {
-            let length = rng.gen_range(1, 255);
+            let length = rng.gen_range(1..255);
             let mut bytes: Vec<u8> = Vec::new();
             let mut expected: Vec<u8> = Vec::new();
 

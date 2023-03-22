@@ -69,7 +69,7 @@ mod write_tests {
         let mut rng = thread_rng();
         for _ in 0..100 {
             let mut packet = Packet::new_empty();
-            let length = rng.gen_range(1, 10);
+            let length = rng.gen_range(1..10);
             let mut bytes: Vec<u8> = Vec::new();
 
             for _ in 0..length {
@@ -135,10 +135,11 @@ mod write_tests {
         for _ in 0..100 {
             let mut packet = Packet::new_empty();
 
-            let length = rand::thread_rng().gen_range(0, 255);
+            let length = rand::thread_rng().gen_range(0..255);
             let test_string = rand::thread_rng()
                 .sample_iter(&Alphanumeric)
                 .take(length)
+                .map(char::from)
                 .collect::<String>();
 
             packet.write_str(&test_string).unwrap();
@@ -155,10 +156,11 @@ mod write_tests {
         for _ in 0..100 {
             let mut packet = Packet::new_empty();
 
-            let length = rand::thread_rng().gen_range(0, 255);
+            let length = rand::thread_rng().gen_range(0..255);
             let test_string = rand::thread_rng()
                 .sample_iter(&Alphanumeric)
                 .take(length)
+                .map(char::from)
                 .collect::<String>();
 
             packet.write_str_with_length(&test_string).unwrap();

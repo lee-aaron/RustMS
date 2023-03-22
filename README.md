@@ -1,8 +1,7 @@
 # RustMS 🍁
 
-RustMS is an attempt at implementing the Maplestory server end from scratch in Rust. 
-
-It's very work-in-progress and really only barely off the ground at this point, but it's been a fun evening/weekend side project so far!  
+RustMS is an attempt at implementing the Maplestory server end from scratch in Rust. This is a fork of the original owner's work. I intend to 
+try updating and making some changes too.
 
 ![Getting places](img/sp_ship.png)
 ## Motivation
@@ -13,9 +12,6 @@ When I started this project, I knew next to no Rust, however I was quite interes
 The second motivation behind this project comes from the fact that Maplestory has a special place in my heart as the game that probably defined my childhood. I knew people had written and ran their own servers before but for the longest time it hadn't hit me that a lot of these servers had their source up on Github. Having looked at a few servers such as [HeavenMS](https://github.com/ronancpl/HeavenMS) and [Valhalla](https://github.com/Hucaru/Valhalla), I realized that I could probably try my hand at writing my own server too and that I could probably have quite a bit of fun with it.
 
 ## Overview
-As of 23/08/2020, RustMS is still in a very early stage.
-
-** Currently on hold while school's been very unforgiving; have plans for what to do next here that I will hopefully write down soon though! **
 
 ### Crates
 The `crypt` crate provides the means for encrypting and decrypting packets using

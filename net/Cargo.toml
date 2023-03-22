@@ -11,10 +11,10 @@ packet = { path = "../packet" }
 crypt = { path = "../crypt" }
 db = { path = "../db" }
 bufstream = "0.1.4"
-rand = "0.7.3"
-num = "0.2"
+rand = "0.8.5"
+num = "0.4"
 num-derive = "0.3"
 num-traits = "0.2"
-serde_derive = "^1.0.8"
-serde = "^1.0.8"
-config = "0.10.1"
+serde_derive = "^1.0.158"
+serde = "^1.0.158"
+config = "0.13.3"

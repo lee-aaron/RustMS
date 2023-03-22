@@ -1,4 +1,4 @@
-use config::{Config, ConfigError, File};
+use config::{Config, ConfigError, File, FileFormat};
 
 #[derive(Debug, Deserialize)]
 pub struct Database {
@@ -12,10 +12,7 @@ pub struct Settings {
 
 impl Settings {
     pub fn new() -> Result<Self, ConfigError> {
-        let mut s = Config::new();
-
-        s.merge(File::with_name("config/db_config"))?;
-
-        s.try_into()
+        let s = Config::builder().add_source(File::new("config/db_config", FileFormat::Toml)).build().unwrap();
+        s.try_deserialize()
     }
 }

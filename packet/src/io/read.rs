@@ -85,7 +85,7 @@ mod read_tests {
     fn read_bytes() {
         let mut rng = thread_rng();
         for _ in 0..100 {
-            let length = rng.gen_range(1, 10);
+            let length = rng.gen_range(1..10);
             let mut bytes: Vec<u8> = Vec::new();
 
             for _ in 0..length {
@@ -103,7 +103,7 @@ mod read_tests {
     fn read_bytes_one_at_a_time() {
         let mut rng = thread_rng();
         for _ in 0..100 {
-            let length = rng.gen_range(1, 10);
+            let length = rng.gen_range(1..10);
             let mut bytes: Vec<u8> = Vec::new();
 
             for _ in 0..length {
@@ -194,10 +194,11 @@ mod read_tests {
     #[test]
     fn read_string() {
         for _ in 0..100 {
-            let length = rand::thread_rng().gen_range(0, 255);
+            let length = rand::thread_rng().gen_range(0..255);
             let test_string = rand::thread_rng()
                 .sample_iter(&Alphanumeric)
                 .take(length)
+                .map(char::from)
                 .collect::<String>();
 
             let mut buf = Vec::new();
@@ -213,10 +214,11 @@ mod read_tests {
     #[test]
     fn read_str_with_length() {
         for _ in 0..100 {
-            let length = rand::thread_rng().gen_range(0, 255);
+            let length = rand::thread_rng().gen_range(0..255);
             let test_string = rand::thread_rng()
                 .sample_iter(&Alphanumeric)
                 .take(length)
+                .map(char::from)
                 .collect::<String>();
 
             let mut buf = Vec::new();
@@ -233,10 +235,11 @@ mod read_tests {
     #[test]
     fn read_str_with_length_between_two_fixed_strs() {
         for _ in 0..100 {
-            let length = rand::thread_rng().gen_range(0, 255);
+            let length = rand::thread_rng().gen_range(0..255);
             let test_string = rand::thread_rng()
                 .sample_iter(&Alphanumeric)
                 .take(length)
+                .map(char::from)
                 .collect::<String>();
 
             let hello = "Hello world!";

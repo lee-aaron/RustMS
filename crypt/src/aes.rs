@@ -1,5 +1,5 @@
-use aes::block_cipher::generic_array::GenericArray;
-use aes::block_cipher::{BlockCipher, NewBlockCipher};
+use aes::cipher::generic_array::GenericArray;
+use aes::cipher::{KeyInit, BlockEncrypt};
 use aes::Aes256;
 
 use crate::constants;
@@ -208,7 +208,7 @@ mod tests {
             }
             let cipher = super::MapleAES::new(&iv, 27);
 
-            let initial_length: i16 = rng.gen_range(0, 16000);
+            let initial_length: i16 = rng.gen_range(0..16000);
 
             let header = cipher.gen_packet_header(initial_length);
             let header_int: u32 = header.as_slice().read_u32::<BigEndian>().unwrap();
