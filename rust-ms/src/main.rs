@@ -23,6 +23,7 @@ async fn login() {
     println!("Listening on 8484");
     loop {
         let (socket, _) = listener.accept().unwrap();
+        println!("Connection from {:?}", socket.peer_addr().unwrap());
         println!(
             "Connection Terminated: {}",
             ClientConnectionListener::login_server(socket)
@@ -37,6 +38,7 @@ async fn world() {
     println!("Listening on 8485");
     loop {
         let (socket, _) = listener.accept().unwrap();
+        println!("Connection from {:?}", socket.peer_addr().unwrap());
         println!(
             "Connection Terminated: {}",
             ClientConnectionListener::world_server(socket)

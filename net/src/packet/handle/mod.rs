@@ -34,6 +34,7 @@ impl DefaultHandler {
 //
 
 pub fn get_handler(op: i16, server_type: &ServerType) -> Box<dyn PacketHandler> {
+    println!("Received op {}", op);
     match server_type {
         ServerType::Login => get_login_handler(op),
         ServerType::World => get_world_handler(op),

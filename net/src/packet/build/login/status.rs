@@ -69,12 +69,12 @@ pub fn build_guest_login_packet() -> Result<Packet, NetworkError> {
 
     packet.write_short(opcode)?;
     packet.write_short(0x100)?;
-    packet.write_int(0)?; // TODO: Should be random
+    packet.write_int(rand::random())?;
     packet.write_long(0)?;
     packet.write_long(0)?;
     packet.write_long(now)?;
     packet.write_int(0)?;
-    packet.write_str_with_length("https://github.com/neeerp")?;
+    packet.write_str_with_length("https://github.com/lee-aaron")?;
 
     Ok(packet)
 }

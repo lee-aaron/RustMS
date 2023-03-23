@@ -1,4 +1,16 @@
-table! {
+// @generated automatically by Diesel CLI.
+
+pub mod sql_types {
+    #[derive(diesel::sql_types::SqlType)]
+    #[diesel(postgres_type(name = "keybind_type"))]
+    pub struct KeybindType;
+
+    #[derive(diesel::sql_types::SqlType)]
+    #[diesel(postgres_type(name = "session_state"))]
+    pub struct SessionState;
+}
+
+diesel::table! {
     use crate::sql_types::*;
 
     accounts (id) {
@@ -18,7 +30,7 @@ table! {
     }
 }
 
-table! {
+diesel::table! {
     use crate::sql_types::*;
 
     characters (id) {
@@ -50,7 +62,7 @@ table! {
     }
 }
 
-table! {
+diesel::table! {
     use crate::sql_types::*;
 
     keybindings (id) {
@@ -62,7 +74,7 @@ table! {
     }
 }
 
-table! {
+diesel::table! {
     use crate::sql_types::*;
 
     sessions (id) {
@@ -77,9 +89,10 @@ table! {
     }
 }
 
-joinable!(sessions -> accounts (account_id));
+diesel::joinable!(characters -> accounts (accountid));
+diesel::joinable!(sessions -> accounts (account_id));
 
-allow_tables_to_appear_in_same_query!(
+diesel::allow_tables_to_appear_in_same_query!(
     accounts,
     characters,
     keybindings,

@@ -19,7 +19,8 @@ const DEFAULT_ACTION: [i16; 23] = [
     100, 101, 102, 103, 104, 105, 106, 54, 54, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15,
 ];
 
-#[derive(Debug, Clone, Copy, DbEnum)]
+#[derive(Debug, Clone, Copy, DbEnum, AsExpression)]
+#[diesel(sql_type = crate::schema::sql_types::KeybindType)]
 #[DieselType = "Keybind_type"]
 #[PgType = "keybind_type"]
 pub enum KeybindType {
@@ -68,7 +69,7 @@ impl From<u8> for KeybindType {
 
 /// Keybinding database entity.
 #[derive(Identifiable, Queryable, Insertable, AsChangeset)]
-#[table_name = "keybindings"]
+#[diesel(table_name = keybindings)]
 pub struct Keybinding {
     pub id: i32,
     pub character_id: i32,
@@ -79,7 +80,7 @@ pub struct Keybinding {
 
 /// A projection of the Keybinding entity for less cumbersome manipulation.
 #[derive(Clone, Insertable, AsChangeset)]
-#[table_name = "keybindings"]
+#[diesel(table_name = keybindings)]
 pub struct KeybindDTO {
     pub character_id: i32,
     pub key: i16,

@@ -10,7 +10,8 @@ use std::{cell::RefCell, rc::Rc, time::SystemTime};
 pub mod repository;
 pub use repository::*;
 
-#[derive(Debug, DbEnum)]
+#[derive(Debug, DbEnum, AsExpression)]
+#[diesel(sql_type = crate::schema::sql_types::SessionState)]
 #[DieselType = "Session_state"]
 #[PgType = "session_state"]
 pub enum SessionState {
@@ -21,7 +22,7 @@ pub enum SessionState {
 }
 
 #[derive(Identifiable, Queryable, AsChangeset)]
-#[table_name = "sessions"]
+#[diesel(table_name = sessions)]
 pub struct Session {
     pub id: i32,
     pub account_id: i32,
@@ -35,7 +36,7 @@ pub struct Session {
 
 /// Session creation projection.
 #[derive(Insertable)]
-#[table_name = "sessions"]
+#[diesel(table_name = sessions)]
 pub struct NewSession<'a> {
     pub account_id: i32,
     pub ip: IpNetwork,
